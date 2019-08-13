@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8A64BD5422FC791D00B01C91 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64BD5322FC791D00B01C91 /* SearchResult.swift */; };
+		8AA7033E2302E7C2003F7961 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7033D2302E7C2003F7961 /* Media.xcassets */; };
+		8AA7034123030BE2003F7961 /* TransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7034023030BE2003F7961 /* TransitionAnimation.swift */; };
+		8AA7034C2303F870003F7961 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7034B2303F870003F7961 /* SearchViewController.swift */; };
+		8AA7034E2303F8D6003F7961 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7034D2303F8D6003F7961 /* BaseTextField.swift */; };
+		8AA703502304204F003F7961 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7034F2304204F003F7961 /* SearchFieldView.swift */; };
 		8AE630352301DDDB003F900E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE630342301DDDB003F900E /* UIView+Extension.swift */; };
 		8AE630392301DE28003F900E /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE630382301DE28003F900E /* GenericCell.swift */; };
 		DF82A51622FB499D00AA9AD8 /* SearchField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF82A50C22FB499D00AA9AD8 /* SearchField.framework */; };
@@ -44,6 +49,11 @@
 /* Begin PBXFileReference section */
 		8A64BD4A22FC777D00B01C91 /* ExampleSearchField.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ExampleSearchField.xcodeproj; path = ExampleSearchField/ExampleSearchField.xcodeproj; sourceTree = "<group>"; };
 		8A64BD5322FC791D00B01C91 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		8AA7033D2302E7C2003F7961 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		8AA7034023030BE2003F7961 /* TransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimation.swift; sourceTree = "<group>"; };
+		8AA7034B2303F870003F7961 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8AA7034D2303F8D6003F7961 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		8AA7034F2304204F003F7961 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		8AE630342301DDDB003F900E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8AE630382301DE28003F900E /* GenericCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
 		DF82A50C22FB499D00AA9AD8 /* SearchField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SearchField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,10 +97,14 @@
 		8AE630372301DE18003F900E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8AA7034D2303F8D6003F7961 /* BaseTextField.swift */,
 				8AE630382301DE28003F900E /* GenericCell.swift */,
 				DF82A52722FB49ED00AA9AD8 /* SearchField.swift */,
+				8AA7034F2304204F003F7961 /* SearchFieldView.swift */,
 				8A64BD5322FC791D00B01C91 /* SearchResult.swift */,
 				DF82A52A22FB4CD400AA9AD8 /* SearchResultsController.swift */,
+				8AA7034B2303F870003F7961 /* SearchViewController.swift */,
+				8AA7034023030BE2003F7961 /* TransitionAnimation.swift */,
 				8AE630342301DDDB003F900E /* UIView+Extension.swift */,
 			);
 			path = Classes;
@@ -121,6 +135,7 @@
 			children = (
 				8AE630372301DE18003F900E /* Classes */,
 				DF82A50F22FB499D00AA9AD8 /* SearchField.h */,
+				8AA7033D2302E7C2003F7961 /* Media.xcassets */,
 			);
 			path = SearchField;
 			sourceTree = "<group>";
@@ -257,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA7033E2302E7C2003F7961 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,9 +292,13 @@
 			files = (
 				DF82A52B22FB4CD400AA9AD8 /* SearchResultsController.swift in Sources */,
 				8A64BD5422FC791D00B01C91 /* SearchResult.swift in Sources */,
+				8AA7034C2303F870003F7961 /* SearchViewController.swift in Sources */,
+				8AA7034E2303F8D6003F7961 /* BaseTextField.swift in Sources */,
 				8AE630392301DE28003F900E /* GenericCell.swift in Sources */,
 				8AE630352301DDDB003F900E /* UIView+Extension.swift in Sources */,
 				DF82A52822FB49ED00AA9AD8 /* SearchField.swift in Sources */,
+				8AA7034123030BE2003F7961 /* TransitionAnimation.swift in Sources */,
+				8AA703502304204F003F7961 /* SearchFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

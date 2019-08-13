@@ -9,21 +9,23 @@
 import UIKit
 import os.log
 
-public protocol SearchResultsControllerDelegate: class {
-    func selected(searchResult: SearchAble)
+// TODO: - Documantation
+
+public protocol SearchResultsControllerDelegate: NSObjectProtocol {
+    func selected(searchResult: SearchResult)
 }
 
-open class SearchResultsController<Cell: GenericCell<Element>, Element: SearchAble>: UITableViewController {
+open class SearchResultsController<Cell: GenericCell<Element>, Element: SearchResult>: UITableViewController {
     
     private let cellIdentity = "Search-field-cellID"
     
-    private var _items: [SearchAble] = [] {
+    private var _items: [SearchResult] = [] {
         didSet {
             _filteredItems = _items
         }
     }
     
-    private var _filteredItems: [SearchAble] = [] {
+    private var _filteredItems: [SearchResult] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -35,13 +37,13 @@ open class SearchResultsController<Cell: GenericCell<Element>, Element: SearchAb
         }
     }
     
-    open var filteredItems: [SearchAble] {
+    open var filteredItems: [SearchResult] {
         get {
             return _filteredItems
         }
     }
     
-    open var items: [SearchAble] {
+    open var items: [SearchResult] {
         get {
             return _items
         }
@@ -61,7 +63,7 @@ open class SearchResultsController<Cell: GenericCell<Element>, Element: SearchAb
     }
     
     deinit {
-        os_log("deinit SearchResultsController")
+        os_log("deinit SearchResultsController", type: .debug)
     }
     
     open override func viewDidLoad() {
@@ -80,10 +82,6 @@ open class SearchResultsController<Cell: GenericCell<Element>, Element: SearchAb
     open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentity, for: indexPath) as! Cell
         cell.item = _filteredItems[indexPath.row] as? Element
-        #if DEBUG
-        cell.textLabel?.text = _filteredItems[indexPath.row].id.uuidString
-        #else
-        #endif
         return cell
     }
     
@@ -96,11 +94,11 @@ open class SearchResultsController<Cell: GenericCell<Element>, Element: SearchAb
 
 extension SearchResultsController {
     
-    public func setItems(searchItems: [SearchAble]) {
+    public func setItems(searchItems: [SearchResult]) {
         _items = searchItems
     }
     
-    public func filtered(searchItems: [SearchAble]) {
+    public func filtered(searchItems: [SearchResult]) {
         _filteredItems = searchItems
     }
     
@@ -110,7 +108,7 @@ extension SearchResultsController {
             return
         }
         _filteredItems = items.filter { (item) -> Bool in
-            return item.id.uuidString.contains(txt)
+            return item.title.contains(txt)
         }
     }
     
@@ -131,6 +129,6 @@ extension SearchResultsController {
         tableView.register(Cell.self, forCellReuseIdentifier: cellIdentity)
         tableView.tableFooterView = UIView()
         tableView.keyboardDismissMode = .onDrag
-        view.setupShadowForLayout()
+        tableView.clipsToBounds = true
     }
 }

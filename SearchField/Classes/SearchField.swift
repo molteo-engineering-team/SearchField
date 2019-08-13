@@ -5,172 +5,116 @@
 //  Created by Mustafa Khalil on 8/7/19.
 //  Copyright © 2019 Molteo. All rights reserved.
 //
-
-import UIKit
 import os.log
 
-public protocol SearchFieldDelegate: class {
+protocol SearchFieldDelegate: NSObjectProtocol {
     
-    func textFieldDidBeginEditing(_ textField: UITextField)
-    func textFieldDidReturn(_ textField: UITextField)
-    func selected(searchResult: SearchAble)
-    func textfieldValueDidChangeWith(_ text: String?)
+    /// dismiss is called when the user pressed the back button in the search view to dimiss the search controller
+    func dismissView()
+    
+    /// textfieldValueDidChangeWith text that's being typed by the user
+    ///
+    /// - Parameter text:
+    func textDidChangeWith(_ text: String?)
 }
 
-public class SearchField<Element: SearchAble>: UITextField, UITextFieldDelegate, SearchResultsControllerDelegate {
+/// extension to functions that we might not want to actually implement which just notifies the higher view that the UITextFieldDelegate functions are being called
+extension SearchFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) {}
+    func textFieldShouldClear(_ textField: UITextField) {}
+    func textFieldDidBeginEditing(_ textField: UITextField) {}
+}
+
+final class SearchField: BaseTextField {
+
+    // MARK: - variables
+    private lazy var backImage = UIImage(named: "back", in: Bundle(for: SearchField.self), compatibleWith: nil)
+    private lazy var cancelImage = UIImage(named: "cancel", in: Bundle(for: SearchField.self), compatibleWith: nil)
     
-    lazy var containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 4
-        return view
-    }()
-    
-    private var _controller: SearchResultsController<GenericCell<Element>, Element>?
-    private var _resultsView: UIView?
-    private var isPresented = false
-    
-    var controller: SearchResultsController<GenericCell<Element>, Element> {
-        get {
-            guard let currentController = _controller else {
-                let newController = SearchResultsController<GenericCell<Element>, Element>(delegate: self)
-                _controller = newController
-                return newController
-            }
-            return currentController
-        }
-        set {
-            _controller = newValue
-        }
-    }
-    
-    public var resultsView: UIView {
-        get {
-            guard let results = _resultsView else {
-                let view = controller.view!
-                view.translatesAutoresizingMaskIntoConstraints = false
-                return view
-            }
-            return results
-        }
-        
-        set {
-            _resultsView = newValue
-        }
-    }
-    
+    // MARK: - Delegate
     weak var searchFieldDelegate: SearchFieldDelegate?
     
+    // MARK: - Init
     deinit {
-        os_log("deinit SearchField")
+        os_log("deinit SearchField", type: .debug)
     }
     
-    public init(delegate: SearchFieldDelegate) {
+    init(delegate: SearchFieldDelegate) {
         self.searchFieldDelegate = delegate
         super.init(frame: .zero)
-        initSetup()
+        setupView()
     }
-    
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        initSetup()
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(frame: .zero)
-        initSetup()
+        setupView()
     }
     
-    func initSetup() {
-        setupShadowForLayout()
-        backgroundColor = .white
-        addTarget(self, action: #selector(handleTextDidChange), for: .editingChanged)
-        self.delegate = self
-    }
-    
-    @objc func handleTextDidChange() {
-        guard _controller == nil else {
-            filter()
-            return
+    /// Setup for the view since it's a subclass of BaseTextField
+    func setupView() {
+        // set the delegate to self so we can call the methods for UITextField without any interference
+        delegate = self
+        clearButtonMode = .whileEditing
+        // changes the clear button
+        if let clearButton = value(forKeyPath: "_clearButton") as? UIButton {
+            clearButton.setImage(cancelImage, for: .normal)
         }
-        searchFieldDelegate?.textfieldValueDidChangeWith(text)
+        // sets the image from Framework assets
+        guard let img = backImage else { return }
+        setupLeftContainer(image: img)
+        leftImageContainer?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dimissView)))
     }
     
-    fileprivate func filter() {
-        _controller?.filter(text: text)
-    }
-    
-    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        presentContainerInSuperView()
-        return true
-    }
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        removeContainerFromSuperView()
-        return true
-    }
-    
-    func animate(alpha: CGFloat, completion: ((Bool) -> Void)? = nil) {
-        UIView.animate(withDuration: 0.7,
-                       delay: 0,
-                       usingSpringWithDamping: 1,
-                       initialSpringVelocity: 0.5,
-                       options: .curveEaseInOut,
-                       animations: { [weak self] in
-                        self?.resultsView.alpha = alpha
-                        self?.containerView.alpha = alpha
-            }, completion: completion)
-    }
-    
-    public func filterInBase(searchResultsController searchItems: [SearchAble]) {
-        controller.setItems(searchItems: searchItems)
-    }
-    
-    public func selected(searchResult: SearchAble) {
-        
-        searchFieldDelegate?.selected(searchResult: searchResult)
-    }
-    
-    public func dimissView() {
-        removeContainerFromSuperView()
+    ///  returns the text while the user is typing to the SearchFieldDelegate to start the filtering process
+    @objc override func handleTextDidChange() {
+        searchFieldDelegate?.textDidChangeWith(text)
     }
 }
 
+// MARK: - UITextFieldDelegate
+
+extension SearchField: UITextFieldDelegate {
+    
+    /// Implementation of the textfield should begin editing method that would call the respective method from the  SearchFieldDelegate delegate
+    ///
+    /// - Parameter textField: The text field containing the text.
+    /// - Returns: always true
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        searchFieldDelegate?.textFieldDidBeginEditing(textField)
+        return true
+    }
+    
+    /// Implementation of the textfield should return method that would call the respective method from the  SearchFieldDelegate delegate
+    ///
+    /// - Parameter textField: The text field containing the text.
+    /// - Returns: always true
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchFieldDelegate?.textFieldShouldReturn(textField)
+        return true
+    }
+    
+    /// Implementation of the textfield should clear delegate that would call the respective method from the SearchFieldDelegate delegate
+    ///
+    /// - Parameter textField: The text field containing the text.
+    /// - Returns: Will always return true
+    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        searchFieldDelegate?.textFieldShouldClear(textField)
+        return true
+    }
+}
+
+// MARK: - View change
+
 extension SearchField {
     
-    func removeContainerFromSuperView() {
-        resignFirstResponder()
-        animate(alpha: 0) { [weak self] _ in
-            self?.resultsView.removeFromSuperview()
-            self?.containerView.removeFromSuperview()
-            self?.isPresented.toggle()
-        }
+    /// dismissView is the method that would be called from the delegate SearchFieldDelegate to dismiss the SearchViewController
+    @objc fileprivate func dimissView() {
+        searchFieldDelegate?.dismissView()
     }
     
-    func presentContainerInSuperView() {
-        guard let superView = superview, !isPresented else {
-            return
-        }
-        setupLayout(in: superView)
-        resultsView.alpha = 0
-        containerView.alpha = 0
-        animate(alpha: 1) { [weak self] _ in
-            self?._controller?.reloadData()
-            self?.isPresented.toggle()
-        }
-    }
-    
-    func setupLayout(in view: UIView) {
-         let padding = UIEdgeInsets(top: frame.midY + frame.height, left: frame.minX, bottom: 0, right: view.frame.width - frame.maxX)
-        
-        containerView.frame = view.frame
-        view.insertSubview(containerView, belowSubview: self)
-        containerView.addSubview(resultsView)
-        
-        containerView.fillSuperView()
-        resultsView.fillSuperView(disregarding: .bottom, padding: padding)
-        resultsView.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
-    }
 }
