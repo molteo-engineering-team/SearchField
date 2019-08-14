@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "SearchFieldMolteo"
-  spec.version      = "0.8.1"
+  spec.version      = "0.8.2"
   spec.summary      = "SearchField is a highly customizable framework that would be presenting your search results"
 
   # This description is used to generate tags and improve search results.

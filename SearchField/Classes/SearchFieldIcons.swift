@@ -16,9 +16,9 @@ public class SearchFieldIcons {
         if nil == SearchFieldIcons.internalBundle {
             SearchFieldIcons.internalBundle = Bundle(for: BaseTextField.self)
             let url = SearchFieldIcons.internalBundle!.resourceURL!
-            let currentBundle = Bundle(url: url.appendingPathComponent("eu.molteo.icons"))
-            if let v = currentBundle {
-                SearchFieldIcons.internalBundle = v
+            let currentBundle = Bundle(url: url.appendingPathComponent("eu.molteo.icons.bundle"))
+            if let b = currentBundle {
+                SearchFieldIcons.internalBundle = b
             }
         }
         return SearchFieldIcons.internalBundle!
