@@ -102,13 +102,13 @@
 				8AA7034D2303F8D6003F7961 /* BaseTextField.swift */,
 				8AE630382301DE28003F900E /* GenericCell.swift */,
 				DF82A52722FB49ED00AA9AD8 /* SearchField.swift */,
+				8AA7036423046B4D003F7961 /* SearchFieldIcons.swift */,
 				8AA7034F2304204F003F7961 /* SearchFieldView.swift */,
 				8A64BD5322FC791D00B01C91 /* SearchResult.swift */,
 				DF82A52A22FB4CD400AA9AD8 /* SearchResultsController.swift */,
 				8AA7034B2303F870003F7961 /* SearchViewController.swift */,
 				8AA7034023030BE2003F7961 /* TransitionAnimation.swift */,
 				8AE630342301DDDB003F900E /* UIView+Extension.swift */,
-				8AA7036423046B4D003F7961 /* SearchFieldIcons.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

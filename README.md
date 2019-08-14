@@ -50,7 +50,8 @@ func presentSearchViewController() {
     // adding the padding that we want to the results Controller
     controller.resultsControllerPadding = .init(top: 10, left: 20, bottom: 10, right: 20)
     controller.delegate = self
-    controller.transitioningDelegate = animation        
+    controller.transitioningDelegate = animation   
+    controller.modalPresentationStyle = .currentContext     
     controller.searchableElements = someArray
     present(controller, animated: true)
 }

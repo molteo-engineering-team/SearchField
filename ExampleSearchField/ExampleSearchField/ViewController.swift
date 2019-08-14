@@ -70,6 +70,7 @@ class ExampleViewController: UIViewController, SearchViewControllerDelegate, Sea
         controller.dataSource = self
         searchController = controller
         controller.transitioningDelegate = animation
+        controller.modalPresentationStyle = .currentContext
         controller.searchableElements = someArray
         present(controller, animated: true)
     }
@@ -175,6 +176,7 @@ class SecondExampleViewController: UIViewController, SearchViewControllerDelegat
         controller.delegate = self
         controller.resultsView = customTableView.view
         searchController = controller
+        controller.modalPresentationStyle = .currentContext
         controller.transitioningDelegate = animation
         present(controller, animated: true)
     }
