@@ -8,11 +8,9 @@
 
 import Foundation
 
-public protocol SearchAble {
-    var id: UUID { get set }
-}
 
-public struct SearchResult: SearchAble {
-    public var id: UUID = UUID()
-    public init() {}
+/// Searchable is the protocol that the user should confirm to fi they would be using the already implemented SearchResultsController
+public protocol SearchResult {
+    /// the title the user wants to show in the cells
+    var title: String { get set }
 }
