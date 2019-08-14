@@ -27,8 +27,6 @@ public class BaseTextField: UITextField {
     }
     
     func initSetup() {
-        print(Bundle(for: SearchField.self))
-        print(UIImage(named: "magnify.pdf", in: Bundle(for: SearchField.self), compatibleWith: nil))
         backgroundColor = .white
         addTarget(self, action: #selector(handleTextDidChange), for: .editingChanged)
         setupLayerWithShadow()

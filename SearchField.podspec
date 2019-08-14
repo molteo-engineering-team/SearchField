@@ -15,8 +15,8 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "SearchField"
-  spec.version      = "0.0.3"
+  spec.name         = "SearchFieldMolteo"
+  spec.version      = "0.6"
   spec.summary      = "SearchField is a highly customizable framework that would be presenting your search results"
 
   # This description is used to generate tags and improve search results.
