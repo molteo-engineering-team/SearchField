@@ -13,6 +13,7 @@
 		8AA7034E2303F8D6003F7961 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7034D2303F8D6003F7961 /* BaseTextField.swift */; };
 		8AA703502304204F003F7961 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7034F2304204F003F7961 /* SearchFieldView.swift */; };
 		8AA7035E23044FC4003F7961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AA7035D23044FC4003F7961 /* Assets.xcassets */; };
+		8AA7036523046B4D003F7961 /* SearchFieldIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA7036423046B4D003F7961 /* SearchFieldIcons.swift */; };
 		8AE630352301DDDB003F900E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE630342301DDDB003F900E /* UIView+Extension.swift */; };
 		8AE630392301DE28003F900E /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE630382301DE28003F900E /* GenericCell.swift */; };
 		DF82A51622FB499D00AA9AD8 /* SearchField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF82A50C22FB499D00AA9AD8 /* SearchField.framework */; };
@@ -54,6 +55,7 @@
 		8AA7034D2303F8D6003F7961 /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		8AA7034F2304204F003F7961 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		8AA7035D23044FC4003F7961 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8AA7036423046B4D003F7961 /* SearchFieldIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldIcons.swift; sourceTree = "<group>"; };
 		8AE630342301DDDB003F900E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8AE630382301DE28003F900E /* GenericCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
 		DF82A50C22FB499D00AA9AD8 /* SearchField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SearchField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				8AA7034B2303F870003F7961 /* SearchViewController.swift */,
 				8AA7034023030BE2003F7961 /* TransitionAnimation.swift */,
 				8AE630342301DDDB003F900E /* UIView+Extension.swift */,
+				8AA7036423046B4D003F7961 /* SearchFieldIcons.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				8AE630352301DDDB003F900E /* UIView+Extension.swift in Sources */,
 				DF82A52822FB49ED00AA9AD8 /* SearchField.swift in Sources */,
 				8AA7034123030BE2003F7961 /* TransitionAnimation.swift in Sources */,
+				8AA7036523046B4D003F7961 /* SearchFieldIcons.swift in Sources */,
 				8AA703502304204F003F7961 /* SearchFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

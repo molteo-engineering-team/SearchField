@@ -8,9 +8,6 @@
 
 public class BaseTextField: UITextField {
     
-    // MARK: - Variables
-    private lazy var searchImage = UIImage(named: "magnify", in: Bundle(for: SearchField.self), compatibleWith: nil)
-    
     // MARK: - UI variables
     private lazy var leftViewPadding = UIView()
     var leftImageContainer: UIImageView?
@@ -34,7 +31,7 @@ public class BaseTextField: UITextField {
     }
     
     func setupLeftView() {
-        let img = UIImageView(image: searchImage)
+        let img = UIImageView(image: SearchFieldIcons.search)
         img.isUserInteractionEnabled = true
         leftImageContainer = img
         leftViewPadding.addSubview(img)
