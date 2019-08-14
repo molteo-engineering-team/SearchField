@@ -26,10 +26,6 @@ extension SearchFieldDelegate {
 }
 
 final class SearchField: BaseTextField {
-
-    // MARK: - variables
-    private lazy var backImage = UIImage(named: "back", in: Bundle(for: SearchField.self), compatibleWith: nil)
-    private lazy var cancelImage = UIImage(named: "cancel", in: Bundle(for: SearchField.self), compatibleWith: nil)
     
     // MARK: - Delegate
     weak var searchFieldDelegate: SearchFieldDelegate?
@@ -62,10 +58,10 @@ final class SearchField: BaseTextField {
         clearButtonMode = .whileEditing
         // changes the clear button
         if let clearButton = value(forKeyPath: "_clearButton") as? UIButton {
-            clearButton.setImage(cancelImage, for: .normal)
+            clearButton.setImage(SearchFieldIcons.cancelImage, for: .normal)
         }
         // sets the image from Framework assets
-        guard let img = backImage else { return }
+        guard let img = SearchFieldIcons.back else { return }
         setupLeftContainer(image: img)
         leftImageContainer?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dimissView)))
     }
