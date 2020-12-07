@@ -25,7 +25,7 @@ extension SearchFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {}
 }
 
-final class SearchField: BaseTextField {
+public final class SearchField: BaseTextField {
     
     // MARK: - Delegate
     weak var searchFieldDelegate: SearchFieldDelegate?

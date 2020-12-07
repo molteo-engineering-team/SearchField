@@ -65,8 +65,8 @@ public class SearchViewController<Cell: GenericCell<Element>, Element: SearchRes
     
     private var _resultsController: SearchResultsController<Cell,Element>?
     private var _resultsView: UIView?
-    
-    lazy var searchField: SearchField = {
+
+    public lazy var searchField: SearchField = {
         let field = SearchField()
         field.translatesAutoresizingMaskIntoConstraints = false
         field.searchFieldDelegate = self
