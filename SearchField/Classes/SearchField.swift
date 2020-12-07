@@ -58,7 +58,7 @@ public final class SearchField: BaseTextField {
         clearButtonMode = .whileEditing
         // changes the clear button
         if let clearButton = value(forKeyPath: "_clearButton") as? UIButton {
-            clearButton.setImage(SearchFieldIcons.cancelImage, for: .normal)
+            clearButton.setImage(SearchFieldIcons.cancelImage?.withRenderingMode(.alwaysTemplate), for: .normal)
         }
         // sets the image from Framework assets
         guard let img = SearchFieldIcons.back else { return }

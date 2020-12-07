@@ -31,7 +31,7 @@ public class BaseTextField: UITextField {
     }
     
     func setupLeftView() {
-        let img = UIImageView(image: SearchFieldIcons.search)
+        let img = UIImageView(image: SearchFieldIcons.search?.withRenderingMode(.alwaysTemplate))
         img.isUserInteractionEnabled = true
         leftImageContainer = img
         leftViewPadding.addSubview(img)
